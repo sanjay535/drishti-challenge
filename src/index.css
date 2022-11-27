@@ -5,9 +5,79 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #fff;
+}
+.nav {
+  background: rgb(108, 56, 238);
+  height: 70px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav h2{
+  color: #f1f1f1;
+}
+.container{
+  width: 100%;
+  display: flex;
+}
+.DataChart{
+  width: 250px;
+  height: 250px;
+}
+.left-part{
+  width: 45%;
+}
+.right-part{
+  width: 48%;
+}
+.charts{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.filters{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.filter label{
+  display: block;
+  text-align: center;
+}
+hr{
+  color: #f1f1f1;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* dataset */
+.data-action{
+  display: flex;
+}
+.title{
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.title-char{
+  border: 1px solid #cac7c7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 50%;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+.dish-station, .duration-date{
+  display: flex;
+  flex-wrap: wrap;
+}
+.icon{
+  margin-right: 3px;
+}
+.dish, .duration{
+  margin-right: 5px;
 }
