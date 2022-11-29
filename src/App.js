@@ -5,6 +5,8 @@ import { action, dishes, stations } from './data';
 
 import DataAction from './DataAction';
 import { actionList, dishesList, stationList } from './calculation';
+import { IconContext } from 'react-icons';
+import {MdOutlineNavigateBefore, MdOutlineNavigateNext} from 'react-icons/md';
 
 class App extends React.Component {
   constructor(props){
@@ -12,38 +14,48 @@ class App extends React.Component {
     this.state={
       start:0,
       end:9,
-      totalActions:props.actions.length,
+      lastActionIndex:props.actions.length-1,
+      totalPages:props.actions.length%10===0?(Math.floor(props.actions.length/10))-1:Math.floor(props.actions.length/10),
+      currentPage:0,
       prevDisabled:true,
-      nextDisabled:false
+      nextDisabled:false,
+      action:"ANY",
+      dish:"ANY",
+      station:"ANY"
     }
   }
 
-  handelAction(e){
-
+  handelAction=(e)=>{
+    this.setState({action:e.target.value});
   }
 
-  handelDish(e){
-
+  handelDish=(e)=>{
+    this.setState({dish:e.target.value});
   }
 
-  handelStation(e){
-
+  handelStation=(e)=>{
+    this.setState({station:e.target.value});
   }
 
   previous(){
     this.setState((prevState)=>{
-      const {start, end}=prevState;
-      if(start<0)
-        return {...prevState, prevDisabled:true};
-      return {...prevState, start:start-10, end:end-10}
+      const { currentPage}=prevState;
+      if(currentPage-1===0)
+        return {...prevState, prevDisabled:true, nextDisabled:false, start:(currentPage-1)*10, end:(currentPage-1)*10+9, currentPage:currentPage-1};
+      return {...prevState, prevDisabled:false, nextDisabled:false, start:(currentPage-1)*10, end:(currentPage-1)*10+9, currentPage:currentPage-1}
     })
   }
   next(){
     this.setState((prevState)=>{
-      const {start, end, totalActions}=prevState;
-      if(end>=totalActions)
-      return {...prevState, nextDisabled:true}
-      return {...prevState, start:start+10, end:end+10}
+      
+      const { currentPage, totalPages, lastActionIndex}=prevState;
+     
+      if(currentPage+1===totalPages){
+        const endCalc=((currentPage+1)*10+9)>lastActionIndex?lastActionIndex:(currentPage+1)*10+9;
+        return {...prevState, prevDisabled:false, nextDisabled:true, start:(currentPage+1)*10, end:endCalc, currentPage:currentPage+1};
+      }
+      
+      return {...prevState, prevDisabled:false, nextDisabled:false, start:(currentPage+1)*10, end:(currentPage+1)*10+9, currentPage:currentPage+1}
     })
   }
 
@@ -84,21 +96,21 @@ class App extends React.Component {
 
               <div className='filter'>
                 <label>Action</label>
-                <select value={"Any"} onChange={this.handelAction}>
+                <select value={this.state.action} onChange={this.handelAction}>
                   {action.map((item, i)=><option key={`action-${i}`} value={item}>{item}</option>)}
                 </select>
               </div>
 
               <div className='filter'>
                 <label>Dish</label>
-                <select value={"Any"}  onChange={this.handelDish}>
+                <select value={this.state.dish}  onChange={this.handelDish}>
                 {dishes.map((item, i)=><option key={`dish-${i}`} value={item}>{item}</option>)}
                 </select>
               </div>
 
               <div className='filter'>
                 <label>Station</label>
-                <select value={"Any"}  onChange={this.handelStation}>
+                <select value={this.state.station}  onChange={this.handelStation}>
                 {stations.map((item, i)=><option key={`station-${i}`} value={item}>{item}</option>)}
                 </select>
               </div>
@@ -110,8 +122,20 @@ class App extends React.Component {
               {actionArray}
             </div>
             <div className='page-button'>
-              <button disabled={this.state.prevDisabled} onClick={()=>this.previous()} className='prev'>Previous</button>
-              <button disabled={this.state.nextDisabled} onClick={()=>this.next()} className='next'>Next</button>
+              <button disabled={this.state.prevDisabled} onClick={()=>this.previous()} className='prev'> 
+              <IconContext.Provider
+              value={{ color: '#fff',size:'24px' }}
+              > <span><MdOutlineNavigateBefore color='#fff' /> </span>
+              </IconContext.Provider>
+              Back
+            </button>
+              <button disabled={this.state.nextDisabled} onClick={()=>this.next()} className='next'>Next 
+              <IconContext.Provider
+              value={{ color: '#fff',size:'24px'  }}
+              > <span><MdOutlineNavigateNext /> </span>
+              </IconContext.Provider>
+              
+              </button>
             </div>
           </div>
         </div>

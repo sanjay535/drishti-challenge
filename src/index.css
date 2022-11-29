@@ -54,12 +54,17 @@ hr{
 /* dataset */
 .data-action{
   display: flex;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  margin: 10px auto;
+  padding: 2px 5px;
+  transition: 0.3s;
 }
 .title{
   font-size: 1.3em;
   font-weight: 400;
 }
 .title-char{
+  color: rgb(81, 11, 255);
   border: 1px solid #cac7c7;
   display: flex;
   justify-content: center;
@@ -80,4 +85,52 @@ hr{
 }
 .dish, .duration{
   margin-right: 5px;
+}
+
+.page-button{
+  display: flex;
+  justify-content: space-between;
+}
+
+.prev, .next{
+  width: 80px;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color:rgb(108, 56, 238);
+  color: #fff;
+  
+}
+.prev:hover, .next:hover{
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.prev:disabled, .next:disabled{
+ 
+  opacity: 0.5;
+  
+}
+.prev span, .next span{
+  vertical-align: middle;
+  color: #fff;
+}
+
+@media only screen and (max-width: 600px){
+  .container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .charts{
+    display: flex;
+    justify-content: center;
+  }
+  .left-part, .right-part{
+    width: 100%;
+  }
+
 }
