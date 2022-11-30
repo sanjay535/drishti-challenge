@@ -79,13 +79,13 @@ class App extends React.Component {
             </div>
             <div className='charts'>
               <div className='actions'>
-                <DataChart dataForChart={actionList(actions)}/>
+                <DataChart dataForChart={actionList(actions, this.state.action)}/>
               </div>
               <div className='dishes'>
-                <DataChart dataForChart={dishesList(actions)}/>
+                <DataChart dataForChart={dishesList(actions, this.state.action, this.state.dish)}/>
               </div>
               <div className='stations'>
-                <DataChart dataForChart={stationList(actions)}/>
+                <DataChart dataForChart={stationList(actions, this.state.action, this.state.station)}/>
               </div>
              
             </div>
@@ -129,6 +129,7 @@ class App extends React.Component {
               </IconContext.Provider>
               Back
             </button>
+            <div style={{color:'darkblue'}}>{this.state.currentPage+1} of {this.state.totalPages+1}</div>
               <button disabled={this.state.nextDisabled} onClick={()=>this.next()} className='next'>Next 
               <IconContext.Provider
               value={{ color: '#fff',size:'24px'  }}

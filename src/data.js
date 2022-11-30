@@ -1415,9 +1415,9 @@ export const actions=[
     }
 ]
 
-export const dishes=["FRIES", "EGGS", "LASAGNA", "PIZZA", "BURGER", "CAKE","EGG","SALAD"];
-export const action=["GRILL", "TOSS", "PREP", "BAKE", "DRESS", "PRESENTATION", "BOIL", "FRY"];
-export const stations=['DISPATCH2', 'SALADBAY2', 'SALADBAY1', 'DEEPFRIER','BOILER1','OVEN2','DISPATCH1'
+export const dishes=["ANY","FRIES", "EGGS", "LASAGNA", "PIZZA", "BURGER", "CAKE","EGG","SALAD"];
+export const action=["ANY","GRILL", "TOSS", "PREP", "BAKE", "DRESS", "PRESENTATION", "BOIL", "FRY"];
+export const stations=["ANY",'DISPATCH2', 'SALADBAY2', 'SALADBAY1', 'DEEPFRIER','BOILER1','OVEN2','DISPATCH1'
 ,'PREP1','OVEN1', 'PREP2','GRILL1'];
 
 export const backgroundColor= [
